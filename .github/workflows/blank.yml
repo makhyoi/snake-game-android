@@ -13,9 +13,15 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
       with:
-        build-scan-publish: true
+        build-scan-publish: false
         build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
-        build-scan-terms-of-use-agree: "yes"
+        build-scan-terms-of-use-agree: "no"
 
     - name: Run build
       run: ./gradlew build
+      
+    - name: Upload artifact Debug APK 
+      uses: actions/upload-artifact@v3
+      with:
+        name: apk
+        path: app/build/outputs/apk/debug/*.apk
